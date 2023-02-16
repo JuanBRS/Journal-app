@@ -1,72 +1,75 @@
-import { Grid, TextField, Typography } from "@mui/material";
+
+import { Link as RouterLink} from 'react-router-dom';
+import { Google } from "@mui/icons-material";
+import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { minHeight } from "@mui/system";
 
-
 export const LoginPage = () => {
-  
-  
   return (
+    <Grid
+      container
+      spacing={0}
+      direction="colum"
+      alignItems="center"
+      justifyContent="center"
+      sx={{ minHeight: "100vh", backgroundColor: "primary.main", paddind: 4 }}
+    >
+      <Grid
+        item
+        className=" box-shadow"
+        xs={3}
+        sx={{ backgroundColor: "white", padding: 3, border: 2 }}
+      >
+        <Typography variant="h5" sx={{ mb: 1 }}>
+          Login
+        </Typography>
 
-  <Grid 
-  
-  container
-  spacing= { 0 }
-  direction= "colum"
-  alignItems= "center"
-  justifyContent= "center"
-  sx={ {minHeight: '100vh', backgroundColor: 'primary.main', paddind: 4 }}
-    
-  >
+        <form>
+          <Grid container>
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField
+                label="correo"
+                type="email"
+                placeholder="correo@google.com"
+                fullWidth
+              />
+            </Grid>
 
-<Grid item
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <TextField
+                label="Contraseña"
+                type="password"
+                placeholder="contraseña"
+                fullWidth
+              />
+            </Grid>
 
-className=" box-shadow"
-xs={ 3 }
-sx={{ backgroundColor: 'white', padding: 3, border: 2}}>
+            <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+              <Grid item xs={12} sm={6}>
+                <Button variant="contained" fullWidth>
+                  Login
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Button variant="contained" fullWidth>
+                  <Google/>
+                  <Typography sx ={{ml:1}}>Google</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+<Grid container direction ='row' justifyContent= 'end'>
 
-  <Typography variant="h5" sx={{mb: 1}}>Login</Typography>
+<Link  component ={ RouterLink } color= 'inherit' to="/auth/register">
+crear una cuenta
+</Link>
 
 
-  <form>
-<Grid container>
-<Grid item xs={ 12 } sx= {{ mt:2 }}>
-<TextField label="correo"
-          type="email"
-          placeholder="correo@google.com"
-           fullWidth
-          />
-         
 
 </Grid>
 
-
-<Grid item  xs={ 12 } sx= {{ mt:2 }}>
-<TextField label="Contraseña"
-          type="password"
-          placeholder="contraseña"
-           fullWidth
-          />
-         
-
-</Grid>
-
-
-
-
-</Grid>
-
-
-
-  </form>
-
-
-
-
-</Grid>
-
-
-
-  </Grid>
-
-  )
-}
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
+  );
+};
