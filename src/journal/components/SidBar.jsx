@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export const SidBar = ({ drawerWith }) => {
+export const SidBar = ({ drawerWith =240 }) => {
   return (
     <Box
       component="nav"
@@ -21,7 +21,7 @@ export const SidBar = ({ drawerWith }) => {
     >
       <Drawer
         variant="permanent"
-        open={true}
+        open
         sx={{
           display: { xs: "block" },
           "& .muiDrawer-paper": { boxSizing: "border-box", width: drawerWith },
