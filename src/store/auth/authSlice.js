@@ -17,6 +17,7 @@ errorMessage: null,
 
     },
     checkingCredentials:(state) =>{
+     state.status = "checking";
 
     }
 } 

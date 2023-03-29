@@ -1,11 +1,16 @@
+import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Google } from "@mui/icons-material";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
+import { checkingAuthentication, startGoogleSingIn } from "../../store/auth/thunks";
+
 
 
 export const LoginPage = () => {
+
+  const dispatch = useDispatch ();
 
 const {email, password, onInputChange}= useForm ({
   
@@ -17,12 +22,15 @@ const onSubmit = (event) =>{
 
   event.preventDefault();
   console.log ({email, password});
+  dispatch ( checkingAuthentication ());
 
 }
 
 const onGoogleSingIn = ()=>{
 
    console.log('onGoogleSingIn');
+
+   dispatch ( startGoogleSingIn());
 }
 
 
