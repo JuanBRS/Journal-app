@@ -1,5 +1,12 @@
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
-import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
 import { useMemo, useState } from "react";
@@ -23,9 +30,11 @@ export const RegisterPage = () => {
 
   const [formSubmitted, setformSubmitted] = useState(false);
 
-  const { status, errorMessage} = useSelector( state => state.auth);
-  const isChekingAuthentication = useMemo ( () =>status === "checking", [status]);
-
+  const { status, errorMessage } = useSelector((state) => state.auth);
+  const isChekingAuthentication = useMemo(
+    () => status === "checking",
+    [status]
+  );
 
   const {
     formState,
@@ -95,20 +104,18 @@ export const RegisterPage = () => {
             />
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item 
-            xs={12}
-            display={ !!errorMessage ? "" : "none"}
-            >
-
-              <Alert severity="error">{errorMessage}  </Alert>
-            
+            <Grid item xs={12} display={!!errorMessage ? "" : "none"}>
+              <Alert severity="error">{errorMessage} </Alert>
             </Grid>
           </Grid>
 
           <Grid item xs={12}>
             <Button
-            disabled = {isChekingAuthentication}
-            type="submit" variant="contained" fullwidth="true">
+              disabled={isChekingAuthentication}
+              type="submit"
+              variant="contained"
+              fullwidth="true"
+            >
               Crear cuenta
             </Button>
           </Grid>

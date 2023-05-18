@@ -6,7 +6,7 @@ export const NoteView = () => {
   return (
     <Grid
       container
-      direction="row"
+      // direction="row"
       justifyContent="space-between" 
       alignItems ='center'
       sx={{ mb: 1 }}
