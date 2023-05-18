@@ -32,9 +32,11 @@ export const AppRouter = () => {
 
       {
 
-(status === "autenticated")
-? <Route path="/*" element={<JournalRoutes />}  />
-: <Route path="/auth/*" element={<AuthRoutes />} /> 
+
+
+
+
+ <Route path="/auth/*" element={<AuthRoutes />} /> 
 
       }
 

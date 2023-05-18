@@ -2,29 +2,31 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
 import {
   checkingAuthentication,
   startGoogleSingIn,
+  startLoginWithEmailPassword,
 } from "../../store/auth/thunks";
 
 export const LoginPage = () => {
-  const { status } = useSelector((state) => state.auth);
+  const { status, errorMessage } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
   const { email, password, onInputChange } = useForm({
-    email: "juanpablo@gmail.com",
-    password: "1234",
+    email: "",
+    password: "",
   });
 
   const isAuthenticating = useMemo(() => status === "cheking", [status]);
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log({ email, password });
-    dispatch(checkingAuthentication());
+    // esta no es la accion
+    // console.log({ email, password });
+    dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   const onGoogleSingIn = () => {
@@ -54,11 +56,20 @@ export const LoginPage = () => {
               label="Contraseña"
               type="password"
               placeholder="contraseña"
-              fullwidth ="true"
+              fullwidth="true"
               name="password"
               value={password}
               onChange={onInputChange}
             />
+          </Grid>
+          <Grid 
+          
+          container
+          display={!!errorMessage ? "" : "none"}
+          sx= {{mt:1}} >
+            <Grid item xs={12} >
+              <Alert severity="error">{errorMessage} </Alert>
+            </Grid>
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
@@ -67,7 +78,7 @@ export const LoginPage = () => {
                 disabled={isAuthenticating}
                 type="submit"
                 variant="contained"
-                fullwidth ="true"
+                fullwidth="true"
               >
                 Login
               </Button>
@@ -76,7 +87,7 @@ export const LoginPage = () => {
               <Button
                 disabled={isAuthenticating}
                 variant="contained"
-                fullwidth ="true"
+                fullwidth="true"
                 onClick={onGoogleSingIn}
               >
                 <Google />
